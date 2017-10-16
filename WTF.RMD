@@ -1,0 +1,96 @@
+---
+title: "try"
+author: "euloo"
+date: "October 16, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 2.0 Data Structures
+Уменьшение больших функций до встроенных
+
+
+```{r}
+fx <- function(x) x*x
+f <- function(a,b) fx(a) + fx(b)
+f(10, 100)
+```
+```{r}
+is.integer(666)
+round(13) == 13
+is.integer(as.integer(13))
+```
+```{r}
+0.33333333333333333333333333 == 3 * 0.11111111111111111111111111
+0.45 == 3 * 0.15
+0.15 * 3
+round(0.45, 2) == round(3 * 0.15, 2)
+pi
+approx.pi <- 22/7
+approx.pi
+```
+##Векторы
+```{r}
+x <- c (6, 66, 666)
+x
+is.vector(x)
+x[1] # нумерация с единицы :'(
+x[0] # WTF
+x[4] # выход за границы
+x[-8] # WTF
+x[9.8] #WTF
+x[NA] #WTF?????
+
+```
+```{r}
+vector(length=10) # возврат "пустого" вектора
+vector(length=0) #WTF
+vector(length = 7.5) #привел к целому
+
+```
+```{r}
+x <- c(1, 2, 3, 4, 5, 6)
+y <- c(2, 3, 4, 5, 6, 7)
+x + y
+x * y # поэлементно
+x %*% y # перемножение матриц
+```
+```{r}
+all.equal(x, as.vector(x)) #WTF
+```
+```{r}
+x <- c(1, 2, 3, 4)
+x + c(666, 13) #элементы короткого вектора повторяются
+```
+```{r}
+mean(x)
+median(x)
+length(x)
+sum(x)
+sort(x)
+summary(x)
+```
+```{r}
+hist(x)
+```
+```{r}
+range(x <- sort(round(stats::rnorm(10) - 1.2, 1)))
+
+if(any(x < 0)) cat("x contains negative values\n")
+if(all(x < 0)) cat("all x values are negative\n")
+all(logical(0))  # true, as all zero of the elements are true. WTF
+```
+#names which
+Адресация
+Индекс
+Вектор индексов
+Вектор отрицательных индексов
+Логический вектор
+
+```{r}
+
+```
+
