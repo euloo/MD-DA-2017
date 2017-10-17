@@ -2,7 +2,9 @@
 title: "try"
 author: "euloo"
 date: "October 16, 2017"
-output: html_document
+output:
+  html_document: default
+  html_notebook: default
 ---
 
 ```{r setup, include=FALSE}
@@ -89,7 +91,64 @@ all(logical(0))  # true, as all zero of the elements are true. WTF
 Вектор индексов
 Вектор отрицательных индексов
 Логический вектор
+#2.1 Data Structures Advanced
 
+
+```{r}
+x <- c(1, 2, 3, 4, 5, 6)
+x.a <- array(x, dim = c(2,3)) #Заполнение сверху вниз по колонкам
+x.a
+dim(x.a)
+is.vector(x.a)
+is.array(x.a)
+typeof(x.a)#The Type of an Object
+str(x.a) #структура
+```
+```{r}
+attributes(x.a) #атрибут x.a - размерность dim 2 строки, 3 столбца
+```
+```{r}
+x <- cbind(a = 1:3, pi = pi) # simple matrix with dimnames
+x
+attributes(x) # безымянные строки, имена колонок
+```
+```{r}
+str(x.a) # структура
+str(1:13)
+str(str)
+```
+```{r}
+x.a
+x.a[2,3] # строка столбец
+x.a[,2] # второй столбец
+x.a[2,] #вторая строка
+x.a[2] #WTF
+```
+###Which
+```{r}
+LETTERS
+which(LETTERS == "R") #номер буквы в алфавите
+which((1:12)%%2 == 0) # which are even?
+which (x.a %%2 == 1)
+```
+```{r}
+rowSums(x.a) #сумма по строкам
+colSums(x.a)
+rowMeans(x.a)
+```
+```{r}
+x.c <- x.a * 2
+x.c
+```
+```{r}
+mdat <- matrix(c(1,2,3, 11,12,13), nrow = 2, ncol = 3, byrow = TRUE, dimnames = list(c("row1", "row2"), c("Col1", "Col2", "Col3")))
+mdat
+is.array(mdat)
+is.matrix(mdat)
+identical(mdat, x.a)
+all.equal(mdat, mdat)
+```
+p6
 ```{r}
 
 ```
