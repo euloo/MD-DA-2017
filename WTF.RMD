@@ -1,10 +1,11 @@
 ---
-title: "try"
+title: "WTF R"
 author: "euloo"
 date: "October 16, 2017"
 output:
   html_document: default
   html_notebook: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -12,10 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 2.0 Data Structures
-Уменьшение больших функций до встроенных
-
 
 ```{r}
+#Уменьшение больших функций до встроенных
 fx <- function(x) x*x
 f <- function(a,b) fx(a) + fx(b)
 f(10, 100)
@@ -85,14 +85,9 @@ if(any(x < 0)) cat("x contains negative values\n")
 if(all(x < 0)) cat("all x values are negative\n")
 all(logical(0))  # true, as all zero of the elements are true. WTF
 ```
-#names which
-Адресация
-Индекс
-Вектор индексов
-Вектор отрицательных индексов
-Логический вектор
-#2.1 Data Structures Advanced
 
+#2.1 Data Structures Advanced
+###массивы
 
 ```{r}
 x <- c(1, 2, 3, 4, 5, 6)
@@ -140,7 +135,9 @@ rowMeans(x.a)
 x.c <- x.a * 2
 x.c
 ```
+###матрицы
 ```{r}
+
 mdat <- matrix(c(1,2,3, 11,12,13), nrow = 2, ncol = 3, byrow = TRUE, dimnames = list(c("row1", "row2"), c("Col1", "Col2", "Col3")))
 mdat
 is.array(mdat)
@@ -148,8 +145,95 @@ is.matrix(mdat)
 identical(mdat, x.a)
 all.equal(mdat, mdat)
 ```
-p6
 ```{r}
+f <- matrix(c(40,1,60,3),nrow=2)
+f
+six.fives <- matrix(rep(5,6), ncol=3)
+six.fives
+f %*% six.fives
 
+```
+
+```{r}
+det(f)
+o <- c(10,20)
+o
+f %*% o #преобразование вектора в матрицу
+
+```
+```{r}
+m2 <- cbind(1, 1:4)
+colnames(m2, do.NULL = FALSE)
+colnames(m2) <- c("x","Y")
+rownames(m2) <- rownames(m2, do.NULL = FALSE, prefix = "Obs.")
+m2
+```
+```{r}
+rownames(f) <- c("трудодни", "сталь")
+colnames(f) <- c("автомобили", "грузовики")
+f
+```
+```{r}
+output <- c(20,10)
+names(output) <- c("грузовики", "автомобили")
+output
+```
+```{r}
+available <- c(1600, 70)
+names(available)<- c("трудодни", "сталь")
+f %*% output[colnames(f)]
+```
+```{r}
+f
+apply(f, 1, mean)
+apply(f, 2, mean)
+```
+```{r}
+# Compute row and column sums for a matrix:
+x <- cbind(x1 = 3, x2 = c(4:1, 2:5))
+x
+dimnames(x)[[1]] <- letters[1:8]
+x
+apply(x, 2, mean, trim = .2)
+x
+col.sums <- apply(x, 2, sum)
+row.sums <- apply(x, 1, sum)
+rbind(cbind(x, Rtot = row.sums), Ctot = c(col.sums, sum(col.sums)))
+
+```
+###Списки
+Не обязательно одного типа
+```{r}
+my.lst <- list("wtf", 7, FALSE)
+my.lst
+names(my.lst) <- c("family", "mean", "is.symmetric")
+my.lst
+my.lst$mean
+my.lst[1]
+my.lst[[1]]
+```
+###Датафреймы
+n строк для наблюдений, p колонок для переменных
+```{r}
+a.matrix <- matrix(c(35,8,10,4), nrow=2)
+colnames(a.matrix) <- c("v1", "v2")
+a.matrix
+
+```
+
+```{r}
+a.data.frame <- data.frame(a.matrix, logicals=c(TRUE, FALSE))
+a.data.frame
+```
+
+```{r}
+a.data.frame$v1
+a.data.frame[,"v1"]
+a.data.frame[1,]
+colMeans(a.data.frame)
+a.data.frame
+rbind(a.data.frame, list(v1=-3, v2=-5, logicals=TRUE))
+a.data.frame
+rbind(a.data.frame, c(3,4,6))
 ```
 
