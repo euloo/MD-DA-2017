@@ -1,0 +1,28 @@
+---
+title: "regex"
+output: html_document
+---
+
+```{r}
+#Загрузите данные о землятресениях
+anss <- readLines("https://raw.githubusercontent.com/SergeyMirvoda/MD-DA-2017/master/data/earthquakes_2011.html", warn=FALSE)
+
+#Выберите строки, которые содержат данные с помощью регулярных выражений и функции grep
+# 2002/01/01 10:39:06.82,-55.2140,-129.0000,10.00,6.00,Mw,78,,,1.07,NEI,2002010140
+#внутри <pre>""</pre>
+#сплит через запятые
+#[...] - character list
+#[^...] - inverted character list
+#\\d чтобы отсечь заголовок
+data<-strsplit(anss[grep(pattern="^[^<]\\d" , anss)], ",")
+typeof(data)
+attributes(data)
+#первая строка
+data[1] 
+#конкретный элемент
+data[[1]][[2]] #всё очень плохо
+
+#Проверьте что все строки (all.equal) в результирующем векторе подходят под шаблон. 
+#?какой шаблон? старый? новый?
+wtf <- all.equal(data,grep("^[^<]\\d",anss))
+```
