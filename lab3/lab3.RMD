@@ -1,0 +1,150 @@
+---
+title: "lab3"
+output: html_document
+---
+
+# Лабораторная работа 3
+## Задачи для лабораторной: 
+* работа с текстом;
+* использование регулярных выражений для извлечения данных;
+* переписывание существующего кода;
+* ассиметричные распределения.
+
+## Исходные данные
+Файл _forbes.htm_ содержит список богатейших американцев по версии журнала Форбс.
+На его примере потренируемся в разборе html страниц.
+
+### Задание 1
+1. Используйте команду ``readLines`` для загрузки файла в текстовый вектор _html_.
+```{r}
+html <- readLines("https://raw.githubusercontent.com/SergeyMirvoda/MD-DA-2017/master/data/forbes.htm");
+```
+   1. Сколько строк в файле?
+```{r}
+length(html)
+```
+   2. Сколько символов в файле?
+```{r}
+sum(nchar(html))
+```
+2. Откройте файл в текстовом редакторе. Найдите строки, содержащие данные о Билле Гейтсе и Ларри Эллисоне и запомните размер их дохода.
+<h3>1 Bill Gates</h3>
+<img src="http://i.forbesimg.com/media/lists/people/bill-gates_50x50.jpg" alt="">
+<td class="worth">$72 B</td>
+<h3>3 Larry Ellison</h3>
+<img src="http://i.forbesimg.com/media/lists/people/larry-ellison_50x50.jpg" alt="">
+<td class="worth">$41 B</td>
+
+
+
+3. Напишите шаблон регулярного выражения и используйте функцию ``grep``, чтобы извлечь размер дохода из данных в векторе _html_.
+Удостоверьтесь, что полученный вектор номеров строк содержит содержит ровно 100 записей и ссылается на номера строк в котрых действительно есть
+информация о доходе, а не просто первый попавшийся текст.
+```{r}
+#<td class="worth">$72 B</td>
+#worth.value <- grep('<td class="worth">\\$[\\d,]* B</td>', html, value=TRUE, perl=TRUE)
+#короче
+worth.str <- grep('\\$[\\d,]* B', html, value=TRUE, perl=TRUE)
+worth.str
+
+worth.num <- grep('\\$[\\d,]* B', html, perl=TRUE)
+worth.num
+
+length(worth.str)
+length(worth.num)
+
+html[worth.num]
+
+```
+4. Напишите код, использовав регулярное выражение из п. 3, и функции ``regexp`` и ``regmatches``, чтобы извлечь все данные о доходе.
+Проверьте следующее:
+   1. Должно быть ровно сто значений.
+ 
+```{r}
+worth.value <- regmatches(html, regexpr("\\$[\\d,]* B", html, perl = TRUE))
+worth.value
+length(worth.value)
+```
+   2. Самый большой доход должен быть доход Билла Гейтса
+```{r}
+#вычищаем мусор
+worth.value <- gsub(" B","",worth.value)
+worth.value <- gsub("\\$","",worth.value)
+worth.value <- gsub(",",".",worth.value)
+worth.value <- as.numeric(worth.value)
+max(worth.value)
+```
+   3. Такой доход должен быть в списке один раз.
+```{r}
+length(worth.value[worth.value == max(worth.value)])
+```
+   4. В всписке должна быть цифра, которую мы запомнили для Ларри Эллисона.
+```{r}
+worth.value[3]
+```
+   5. Должно быть как минимум два значения, встречающихся несколько раз
+```{r}
+sort(worth.value[duplicated(worth.value)]) #wtf 36
+```
+
+### Задание 2
+5. В данных доход представлен в формате **"$42 B"**, что означает **42 × 10^9**.
+Преобразуйте этот формат в числовой и сохраните в вектор _worths_. Удостоверьтесь в следующем:
+```{r}
+worths <- worth.value * 10^9;
+worths
+```
+   1. _worths_ является вектором и в нём сто занчений типа _double_.
+```{r}
+is.vector(worths)
+is.double(worths)
+length(worths)
+
+```
+   2. Все элементы вектора _worths_ больше 1 миллиарда.
+```{r}
+length(worths[worths > 10^9])
+```
+   3. Самое большое число это доход Билла Гейтса.
+```{r}
+max(worths)
+```
+6. Используйте вектор _worths_ , чтобы выяснить следующее:
+   1. Какова медиана ста этих записей?
+```{r}
+median(worths)
+```
+   2. Средний доход?
+```{r}
+mean(worths)
+```
+   3. Как много людей из этого списка имеют доход больше 5млрд., 10, 25? 
+```{r}
+length(worths[worths > 5*10^9])
+length(worths[worths > 10*10^9])
+length(worths[worths > 25*10^9])
+```
+   4. Какой их общий доход?
+```{r}
+sum(worths)
+```
+   2. Какую долю от общего дохода, составляет пятёрка самых богатых.
+```{r}
+sum(worths[1:5])/sum(worths) * 100 #%
+```
+   3. Какую долю от общего дохода, составляют 20 самых богатых.
+```{r}
+sum(worths[1:20])/sum(worths) * 100 #%
+```
+   4. В данных [федерального резерва США](https://www.federalreserve.gov/releases/z1/current/z1.pdf) найдите
+   показатель дохода всех домохозяйств (Household net worth) в соответвующем году, какую долю
+   общего дохода составляют 100 богатейших людей. 
+```{r}
+household.net.worth <- 78.536 * 10^9
+household.net.worth
+sum(worths)
+#что-то пошло не так
+sum(worths) / household.net.worth 
+```
+
+![](https://pbs.twimg.com/profile_images/839795597028700161/bhNo6ymR_400x400.jpg)
