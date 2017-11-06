@@ -394,12 +394,6 @@ six.fives</code></pre>
 [1,]  500  500  500
 [2,]   20   20   20</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGV0KGYpXG5gYGAifQ== -->
-<pre class="r"><code>det(f)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDYwXG4ifQ== -->
-<pre><code>[1] 60</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -522,6 +516,23 @@ f  3  3
 g  3  4
 h  3  5</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sLnN1bXMgPC0gYXBwbHkoeCwgMiwgc3VtKVxucm93LnN1bXMgPC0gYXBwbHkoeCwgMSwgc3VtKVxucmJpbmQoY2JpbmQoeCwgUnRvdCA9IHJvdy5zdW1zKSwgQ3RvdCA9IGMoY29sLnN1bXMsIHN1bShjb2wuc3VtcykpKVxuYGBgIn0= -->
+<pre class="r"><code>col.sums &lt;- apply(x, 2, sum)
+row.sums &lt;- apply(x, 1, sum)
+rbind(cbind(x, Rtot = row.sums), Ctot = c(col.sums, sum(col.sums)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICB4MSB4MiBSdG90XG5hICAgICAzICA0ICAgIDdcbmIgICAgIDMgIDMgICAgNlxuYyAgICAgMyAgMiAgICA1XG5kICAgICAzICAxICAgIDRcbmUgICAgIDMgIDIgICAgNVxuZiAgICAgMyAgMyAgICA2XG5nICAgICAzICA0ICAgIDdcbmggICAgIDMgIDUgICAgOFxuQ3RvdCAyNCAyNCAgIDQ4XG4ifQ== -->
+<pre><code>     x1 x2 Rtot
+a     3  4    7
+b     3  3    6
+c     3  2    5
+d     3  1    4
+e     3  2    5
+f     3  3    6
+g     3  4    7
+h     3  5    8
+Ctot 24 24   48</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -603,7 +614,7 @@ a.matrix</code></pre>
 <pre class="r"><code>a.data.frame &lt;- data.frame(a.matrix, logicals=c(TRUE, FALSE))
 a.data.frame</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFUVS9ETUF4MTAwSzNTcHNxOFFjNGNGMmw5Y1N4U1B3Q1RydUdMTnNxUWpLbEdYRGtsdytjSmk0bGxxSThQOXZQSHkvUHU3YmFWUURBSUM4WXNCd2gvZ0FaRkxEMC94ZEFmb2ZBUjlZK3NYdjZCbS9kUFpBRi9pRTRYVDN4UWRpTGpmWlArRWJ6ZHprZ3FFZnhRTEtQN1lUYWlCYktISHZCMVpBSUxLMzViRWhrTmV2RTBrNUM4WUU2RVZudHVlUE53V0k5ZXRla3BEUm4xeHVOUmN6dlhzWmRzdmptUXBtZEJTRUoxaGZ0Sjl4dnhPbWkzemJ0WTVLNytodDV3bm1ZaGYxRXJUSnFGVktjVE1TM1VoOTdMV2xCYWEyeDVDaitLbFYwMW5pajhVVE4yZmJhMGU3SURvMHpqbE5lSll3aVpyd0dYSDhCVkxCWEVoc0NBQUE9In0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFUVS9ETUF4MTA0NnlTcHNxOFFjNGNGMGxwbDEyS3hLL1lLZGRReGEyaXBCTWFRWWMrZVVEcDRsTGlhVW96OC8yODhmdWViK3U5aFVBTU1nTEJpeEhpRDlBQmdYTS9mOEZrTjhoOEpHbFQyeWZ2c0ZiZXc5a2dYOElUbHVQZkJEMllvUDlFNTVwL2k1N0JQVWdIa2oyOFRpaWRVUzN5aHc3d1ZXZkNNeXQrV3hJWkRIcHhOSk9RdkdlT2hGWkhiamp6YXZGZXZTdVNVbHB6cTR6R291WTM3Mk11MlR4VFlVeU93bENFcXd2Mms5NFdJblRSYit0dHBza2QvRTM4b2p6TUF2N2lWcGwxQ3FrT0ptSWI2UStkbHJTZ3RKYVk4bFIvRVdxNkN6eFJzT0ptclB0dEtQZGtlMGJaeHludkVvWVJjeHdEYmorQWdBT0MzNGJBZ0FBIn0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["v1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["v2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["logicals"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"35","2":"10","3":"TRUE"},{"1":"8","2":"4","3":"FALSE"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
@@ -629,7 +640,7 @@ a.data.frame</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYS5kYXRhLmZyYW1lWzEsXVxuYGBgIn0= -->
 <pre class="r"><code>a.data.frame[1,]</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJuVlF5MjdDTUJCY25OQ0FKUkJTZjZGWElxQS9RS1YrQVNldXhoaUlhbXprbU5KanY1eDI3WGdSaWNDUzVabFo3K3hqOWJsZThEVUhBQVpaem9CbENQRUY2RUVPdy9EK0FHU3ZDRUprSElUbHh5K2swL0Ezb3NCallyd3RrNzRSUjFVam1FU2pSbVRmOHh0YUpEVFFkbDlKb2V1T3dkRFpTMGttbzJkVnBCWTFWU0dSYjRVWDVjNWhMckpySjZXd0oxOVpnMGtzekZpMFoyZ1o5ZHhkRURyQnlkbUU3clpUZVRpYnIrbjdyR00wZW9DenBoZjJsN3lLNUpVcmViQUp2eWl6cjR5aUFaVnoxaEhSWXFOMEltUGNUMXhQZVhLVjhUUTdxblhwclJmMGowdXJTWW5iZ09zL25lYkc3UU1DQUFBPSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJuVlFUV3NDTVJBZHMydFhBNHJRdjlDckN3b2VlclBRWCtESmE0eFJsOFpFc3JIMjJGOXVPOGxteEYwMEVQTGVtOHliajlYbmVzN1hIQUFZWkRrRGxpSEVGNkFIT1F6RCt3T1F2U0lJa1hFUWxoKy9rRTdEMzRnQ2o0bnh0a3o2Umh4VmpXQVNqUnFSZmM5dWFKN1FRTnQ5SllXdU93WkRaeThsbVl5ZVZaRmExRlNGUkw0VlhwUTdoN25JcnAyVXdwNThaUTBtc1RCajBaNmhaZFJ6ZDBIb0JDZG5FN3JiVHVYaGJMNm03NHVPMGVnQnpwcGUyRi95S3BKWHJ1VEJKdnlpekw0eWlnWlV6bGxIUkl1TjBvbU1jVDl4UGVYSlZjYlQ3S2pXcGJkZTBEOHVyU1lsYmdPdS8vTzEzcEVEQWdBQSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["v1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["v2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["logicals"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"35","2":"10","3":"TRUE","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
@@ -646,7 +657,7 @@ a.data.frame</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYS5kYXRhLmZyYW1lXG5gYGAifQ== -->
 <pre class="r"><code>a.data.frame</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVF6VTdETUF4MjA0NnlTcHNxOFFJY3VLNWkyd3NVaVNmWWFkZVFoYTBpSkZPYUFVZWVmT0EwY1NteEZPWHpaL3Z6eis1NXY2bjJGUUF3eUFzR0xFZUlQMEFHQmN6OS93V1EzeUh3a2FWUGJKKyt3VnQ3RDJTQmZ3aE9XNDk4RVBaaWcvMFRubW4rTG5zRTlTQWVTUGF4SHRFbW9sdGxqcDNncWs4RTV0WjhOaVN5bUhSaWFTZWhlRStkaUt3TzNQSG0xV0k5ZXRla3BEUm4xeG1OUmN6dlhzWmRzdmltUXBtZEJDRUoxaGZ0Snp5c3hPbWkzMWJieHlSMzhUZnlpUE13Qy91SldtWFVLcVE0bVlodnBENTJXdEtDMGxwanlWSDhSYXJvTFBGR3c0bWFzKzIwbzkyUjdSdG5IS2U4U2hoRnpIQU51UDRDL3JYVWx4c0NBQUE9In0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFUVS9ETUF4MTA0NnlTcHNxOFFjNGNGMGxKdTJ3VzVINEJUdnRHckt3VllSa1NqUGd5QzhmT0UxY1NpeEZlWDYybno5MnovdDF0YThBZ0VGZU1HQTVRdndCTWloZzd2OHZnUHdPZ1k4c2ZXTDc5QTNlMm5zZ0MveERjTnA2NUlPd0Z4dnNuL0JNODNmWkk2Z0g4VUN5ajhjUnJTTzZWZWJZQ2E3NlJHQnV6V2RESW90Sko1WjJFb3IzMUluSTZzQWRiMTR0MXFOM1RVcEtjM2FkMFZqRS9PNWwzQ1dMYnlxVTJVa1FrbUI5MFg3Q3cwcWNMdnB0dGQwa3VZdS9rVWVjaDFuWVQ5UXFvMVloeGNsRWZDUDFzZE9TRnBUV0drdU80aTlTUldlSk54cE8xSnh0cHgzdGptemZPT000NVZYQ0tHS0dhOEQxRjVEbXpPc2JBZ0FBIn0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["v1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["v2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["logicals"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"35","2":"10","3":"TRUE"},{"1":"8","2":"4","3":"FALSE"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
@@ -656,7 +667,7 @@ a.data.frame</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmJpbmQoYS5kYXRhLmZyYW1lLCBsaXN0KHYxPS0zLCB2Mj0tNSwgbG9naWNhbHM9VFJVRSkpXG5gYGAifQ== -->
 <pre class="r"><code>rbind(a.data.frame, list(v1=-3, v2=-5, logicals=TRUE))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFTMDdETUJBZE80RzBsbHBGb2dkZ3diWVJsQXNFaVJPdzZ0YTRwbzB3ZHVXNHdKS2pjYktDbmN4VXJTMVo4MmJlekp2UHkvTjZKZFlDQURnVUpRZGVSQmd0QUlNU3BzbCtBeFEzRVNSbW5tejc5QVBwdGJlRGdkOEowQnY1dTlGcGErUVhKMTZnRGtPZlpjMnVyUHpRZlFUMWtEZ0crZWZEQ2EwUVRZemJka3FhUGhPWWV2ZlZrTWdzbFl5enBxNlhuWlNSUFhXaW9OaklJSnMzSCt1amQ4eEtLcmNQbmJPeGlLZDdWTGdQdzM4dXhQd1pDUmxaSDJ5YWNMTlV1NE45WHo3ZVowSXp0TVVsVHJQd1A5U3FVS3ZVYXVjUVgydTc3YXltQmJYM3pwTmo1S3MyNk16ampZWVROWHZmMlVDN3gyamZCQmNrNVFubERFV0dhOER4SDZIZmtUb3ZBZ0FBIn0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVF6VTdETUF4MjBrSzNTSnNxc1FmZ3dIV1ZtTVNCVzVGNEFrNjdoaXhzRlNHWjBndzQ4bWc4MlNCdW5XbExwTWlmL2RtZmYxNmUxeXV4RmdEQW9TZzU4Q0xDYUFFWWxEQkYrdzFRM0VTQXpCeHQrL1FEK05yYndjRHZCTkliK2J2UmFXdmlGeWRla0E0am4yWE5ycXo4MEgwRTlaQTRCdm5uL1FtdENFMk0yM1pLbWo0VG1IcjMxU1NSR1phTXMyTFh5MDdLeUQ1MVNrR3hrVUUyYno3V1IrK1lsVlJ1SHpwbll4SEhlMVMwRDZOL0xzVDhHUWtaV1I4c1RyaFpxdDNCdmk4Zkh6S2hHZG5pRXVNcy9JKzBLdElxdGRvNXd0ZmFianVyMDRMYWUrZVRZK1NyTnVUTTQ0MkdFelY3MzltUWRvL1J2Z2t1eUpRbmxETXBNbHdEanYvUGpJbEdMd0lBQUE9PSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["v1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["v2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["logicals"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"35","2":"10","3":"TRUE","_rn_":"1"},{"1":"8","2":"4","3":"FALSE","_rn_":"2"},{"1":"-3","2":"-5","3":"TRUE","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
@@ -666,7 +677,7 @@ a.data.frame</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYS5kYXRhLmZyYW1lXG5gYGAifQ== -->
 <pre class="r"><code>a.data.frame</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVF6VTdETUF4MjA0NnlTcHNxOFFJY3VLNWkyd3NVaVNmWWFkZVFoYTBpSkZPYUFVZWVmT0EwY1NteEZPWHpaL3Z6eis1NXY2bjJGUUF3eUFzR0xFZUlQMEFHQmN6OS93V1EzeUh3a2FWUGJKKyt3VnQ3RDJTQmZ3aE9XNDk4RVBaaWcvMFRubW4rTG5zRTlTQWVTUGF4SHRFbW9sdGxqcDNncWs4RTV0WjhOaVN5bUhSaWFTZWhlRStkaUt3TzNQSG0xV0k5ZXRla3BEUm4xeG1OUmN6dlhzWmRzdmltUXBtZEJDRUoxaGZ0Snp5c3hPbWkzMWJieHlSMzhUZnlpUE13Qy91SldtWFVLcVE0bVlodnBENTJXdEtDMGxwanlWSDhSYXJvTFBGR3c0bWFzKzIwbzkyUjdSdG5IS2U4U2hoRnpIQU51UDRDL3JYVWx4c0NBQUE9In0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFUVS9ETUF4MTA0NnlTcHNxOFFjNGNGMGxKdTJ3VzVINEJUdnRHckt3VllSa1NqUGd5QzhmT0UxY1NpeEZlWDYybno5MnovdDF0YThBZ0VGZU1HQTVRdndCTWloZzd2OHZnUHdPZ1k4c2ZXTDc5QTNlMm5zZ0MveERjTnA2NUlPd0Z4dnNuL0JNODNmWkk2Z0g4VUN5ajhjUnJTTzZWZWJZQ2E3NlJHQnV6V2RESW90Sko1WjJFb3IzMUluSTZzQWRiMTR0MXFOM1RVcEtjM2FkMFZqRS9PNWwzQ1dMYnlxVTJVa1FrbUI5MFg3Q3cwcWNMdnB0dGQwa3VZdS9rVWVjaDFuWVQ5UXFvMVloeGNsRWZDUDFzZE9TRnBUV0drdU80aTlTUldlSk54cE8xSnh0cHgzdGptemZPT000NVZYQ0tHS0dhOEQxRjVEbXpPc2JBZ0FBIn0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["v1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["v2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["logicals"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"35","2":"10","3":"TRUE"},{"1":"8","2":"4","3":"FALSE"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
@@ -676,7 +687,7 @@ a.data.frame</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmJpbmQoYS5kYXRhLmZyYW1lLCBjKDMsNCw2KSlcbmBgYCJ9 -->
 <pre class="r"><code>rbind(a.data.frame, c(3,4,6))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFTMDdETUJDZE9vRzBrVnBGWXNPU0JkdEcvUnlBSUhFQ1Z0MjZybWtqakYwNWJtSEprVGxCd1JON1VKMlJySGt6ejI5K3J5K2JWYmtwQVlCQmxqTmdtWWZlQTR3Z2h3bjZMNERzemdOa1p1aWI1MjlBYXg0ZytER1FCZjR4NXF2VUUvLzBBNGsxOTRTU3hqZWFmOGpPZzZwdkhwTHN2UHhIcTRqR3l1eGJ3VlUzS0RDeDVyT21JbE9VaExseGs3U1RVTHlqVHBRc2Q5engrczE2dlk4dUEwbGhqcTQxMm9zWTNxWkFRVStIZDExb1pLOUlHSkRWU2VPRXU3azRuUFQ3ZkwwWS9KMUduS1VZWjJHL3NWWVJhK1ZTSEV6RXQxTHZXeTFwUVdtdHNSUW92cFVxQmpOL28vNUU5ZEcyMnRIdVB0dlZ6amhPLzBwaEZHWDZhOERsRDFnbWRpODdBZ0FBIn0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFQVS9ETUJDOU9vRzBrVnBGWW1Ga1lHMmtWdXJRaVNEeEM1aTZ1cTVwSTR4ZE9XNWg1Q2Z6Q3dxKzJJZnFuR1RkdTN0KzkvWDZzbG1XbXhJQUdHUTVBNVo1NkQzQUNIS1lvUDhDeU80OFFHYUd2bm4rQnJUbUFZSWZBMW5nSDJPK1NqM3hUeitRV0hOUEtHbDhvL21IN0R5byt1WWh5YzZMZjdTTWFLek12aFZjZFlNQ0UycytheW95UlVtWUd6ZEpPd25GTytwRXlYTEhIYS9mck5mNzZES1FGT2JvV3FPOWlPRnRDaFQwZEhqWGhVYjJpb1FCV1owMFRyaWJpOE5KdjgvWHE4SGZhY1JaaW5FVzlodHJGYkZXTHNYQlJId3I5YjdWa2hhVTFocExnZUpicVdJdzh6ZnFUMVFmYmFzZDdlNnpYZTJNNC9TdkZFWlJwcjhHWFA0QU5uVnVVenNDQUFBPSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["v1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["v2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["logicals"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"35","2":"10","3":"1"},{"1":"8","2":"4","3":"0"},{"1":"3","2":"4","3":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
