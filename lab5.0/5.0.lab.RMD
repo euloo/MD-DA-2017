@@ -1,0 +1,120 @@
+---
+title: "R lab 5.0"
+output: html_document
+---
+
+Пользуясь примером из лекции файл (5.0.R) проанализируйте данные
+о возрасте и физ. характеристиках молюсков
+https://archive.ics.uci.edu/ml/datasets/abalone
+```{r}
+data <- read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data", header=TRUE, sep=",")
+summary(data)
+colnames(data)
+```
+
+```{r}
+colnames(data) <- c("sex", "length", "diameter", "height", 
+                "whole_weight", "shucked_weight",
+                "viscera_weight", "shell_weight", "rings")
+
+colnames(data)
+summary(data)
+
+```
+```{r}
+data$sex <- factor(c("Female", "Infant", "Male")[data$sex])
+par(mfrow=c(1,3)) #Set or Query Graphical Parameters
+hist(data$diameter, main = "diameter, mm")
+hist(data$height, main = "height, mm")
+hist(data$whole_weight, main = "whole weight, g")
+```
+
+Видим ассиметрию https://en.wikipedia.org/wiki/Skewness
+и выбросы (от них нужно избавиться)
+
+###Визулизируем возможные зависимости
+```{r}
+par(mfrow=c(1,2)) 
+plot(data$diameter, data$whole_weight,'p',main = "whole_weight(diameter)")
+plot(data$height, data$whole_weight,'p',main = "whole_weight(height)")
+```
+
+Хорошо видна зависимость, нужно её исследовать
+построить линейные модели при помощи функции lm, посмотреть их характеристики
+избавиться от выборосов, построить ещё модели и проверить их
+разделить массив данных на 2 случайные части
+подогнать модель по первой части
+спрогнозировать (функция predict) значения во второй части
+проверить качесвто прогноза
+
+#_Линейные модели_
+##_Зависимость веса от диаметра_
+```{r}
+linear.model.wd<-lm(whole_weight~diameter, data=data)
+linear.model.wd
+summary(linear.model.wd)
+plot(linear.model.wd)
+```
+###_Выбросы = outlier_
+```{r}
+data.noout<-data[data$height<0.4&data$height>0.03&data$diameter>0.1,]
+linear.model.wd.outlier<-lm(whole_weight~diameter,data=data.noout)
+linear.model.wd.outlier
+plot(linear.model.wd.outlier)
+```
+##_Зависимость веса от высоты_
+```{r}
+linear.model.wh<-lm(whole_weight~height, data=data)
+linear.model.wh
+summary(linear.model.wh)
+plot(linear.model.wh)
+```
+###_Выбросы_
+```{r}
+data.noout<-data[data$height<0.4&data$height>0.05,]
+linear.model.wh.outlier<-lm(whole_weight~height,data=data.noout)
+linear.model.wh.outlier
+plot(linear.model.wh.outlier)
+```
+##_Зависимость веса от высоты и диаметра_
+```{r}
+linear.model.w.hd<-lm(whole_weight~+height+diameter,data=data.noout)
+linear.model.w.hd
+summary(linear.model.w.hd)
+plot(linear.model.w.hd)
+```
+##Всё
+```{r}
+linear.model.all<-lm(whole_weight~.-shucked_weight-viscera_weight-shell_weight,data=data.noout)
+linear.model.all
+summary(linear.model.all)
+plot(linear.model.all)
+```
+##_Разделение данных на две случайных части_
+```{r}
+odds <- seq(1, nrow(data.noout), by=2)
+data.in <- data.noout[odds,]
+data.out <- data.noout[-odds,]
+```
+##_Подгон модели по первой части_
+```{r}
+linear.model.all.half<-lm(whole_weight~.-shucked_weight-viscera_weight-shell_weight,data=data.in)
+linear.model.all.half
+summary(linear.model.all.half)
+plot(linear.model.all.half)
+```
+##_Прогноз значений во второй части_
+```{r}
+data.predict.out <- predict (linear.model.all.half, data.out)
+plot (data.out$whole_weight, data.predict.out)
+```
+##_Проверка качества прогноза_
+_Предсказание значений на известном наборе данных - in_
+```{r}
+data.predict.in <- predict (linear.model.all.half)
+cor (data.in$whole_weight, data.predict.in) #почти 1
+```
+_Предсказание значений на неизвестном наборе данных - out_
+```{r}
+cor (data.out$whole_weight, data.predict.out) #почти 1 немного хуже
+```
